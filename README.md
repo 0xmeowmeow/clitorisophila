@@ -1,12 +1,12 @@
 # Clitorisophila
 
-An artwork about language models, large datasets, and the ease of building convincing connections with no real-world use. A schematic clitoral input is attached to a fly's reconstructed nervous system because the tools make it possible.
+An artwork about language models, large datasets, and the ease of building convincing connections with no real-world use. One hybrid body grows from original clitoral geometry into the fly’s reconstructed nervous system, with continuous synthetic nerve bindings because the tools make it possible.
 
-**[Run the live artwork on meow-meow.io](https://meow-meow.io/clitorisophila/)** — animated finger contact, movable stimulation patches, adjustable size/pressure, and computed activity in the full connectome. The page explains the work in five chapters, following the visual-quality reference of The Projection.
+**[Run the live artwork on meow-meow.io](https://meow-meow.io/clitorisophila/)** — animated finger contact, movable stimulation patches, adjustable size/pressure, and computed activity in the full connectome. One cinematic scene changes through five scroll chapters, following the visual-quality reference of The Projection. Its “invented interior” reads computed reward, sensory and aversive activity as pleasure, drive and danger; hunger is explicitly unmodelled.
 
 ![Live finger stimulation and computed fly neuron activity](assets/demo/live-stimulation.png)
 
-[Animated demo](assets/demo/live-loop.gif) · [Video](assets/demo/live-loop.mp4) · [Circuit detail](assets/demo/circuit-detail.png) · [Full artwork page](assets/demo/artwork-page.png) · [Browser build and assumptions](docs/browser-artwork.md)
+[Animated demo](assets/demo/live-loop.gif) · [Video](assets/demo/live-loop.mp4) · [Circuit detail](assets/demo/circuit-detail.png) · [Opening page](assets/demo/artwork-page.png) · [Browser build and assumptions](docs/browser-artwork.md)
 
 **A live synthetic clitoral stimulation → fly-connectome reinforcement interface.** Import it into a game, installation, virtual body or sensor loop. Neural activity and candidate synaptic memory persist between ticks and across checkpoints.
 

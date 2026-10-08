@@ -59,11 +59,15 @@ export class Brain {
     this.adaptation=this.channels.map(()=>0);this.rewardQueue=[0,0,0,0,0];this.tick=0;
     this.learning=true;this.rewardEnabled=true;
     this.lastCounts=new Int32Array(this.n);
+    const bound=new Set(this.channels.flatMap(c=>c.indices));
+    this.boundRateEdges=Array.from(arrays.pre,(v,e)=>bound.has(v)?e:-1).filter(e=>e>=0);
+    this.dangerHz=0;
     // Capture a baseline for exact reset without rebuilding the graph.
     this.reset();
   }
 
   reset() {
+    this.dangerHz=0;
     for(const key of ['g','drive','previous_drive','modulation','adaptation','refractory','queue','queue_count','clock','counts','active','active_flag','nactive','eligibility','eligibility_last','modulation_last'])this.a[key].fill(typeof this.a[key][0]==='bigint'?0n:0);
     this.a.last.fill(-1n);this.a.v.set(this.a.rest);
     for(let e=0;e<this.p;e++)this.a.weight[Number(this.source.edges[e])]=this.a.baseline_plastic[e];
@@ -118,7 +122,13 @@ export class Brain {
     for(const i of this.reward)rewardSpikes+=this.lastCounts[i];
     for(let e=0;e<this.p;e++)if(this.a.weight[Number(this.source.edges[e])]!==this.a.baseline_plastic[e])changed++;
     const sensory=Object.fromEntries(this.channels.map(c=>[c.name,c.indices.reduce((sum,i)=>sum+this.lastCounts[i],0)]));
+    // Read-only instrumentation; these poetic labels never feed the dynamics.
+    const pleasureHz=this.reward.reduce((sum,i)=>{const at=this.source.dan.indexOf(i);return sum+(at>=0?this.rateDAN[at]:0)},0)/this.reward.length;
+    const driveHz=this.boundRateEdges.reduce((sum,e)=>sum+this.rateKC[e],0)/Math.max(1,this.boundRateEdges.length);
+    const dangerSpikes=Array.from(this.source.aversive).reduce((sum,i)=>sum+this.lastCounts[i],0);
+    const dangerRate=dangerSpikes/(.02*Math.max(1,this.source.aversive.length));
+    this.dangerHz=this.dangerHz*Math.exp(-.02)+dangerRate*(1-Math.exp(-.02));
     this.tick++;
-    return {tick:this.tick,sim_ms:this.tick*20,input,sensory_response:response,reward_input:reward,reward_delivered:delivered,reward_spikes:rewardSpikes,sensory_spikes:sensory,total_spikes:total,changed_edges:changed,wall_ms:performance.now()-start};
+    return {interior:{pleasure_hz:pleasureHz,drive_hz:driveHz,danger_hz:this.dangerHz,danger_spikes:dangerSpikes,hunger:null},tick:this.tick,sim_ms:this.tick*20,input,sensory_response:response,reward_input:reward,reward_delivered:delivered,reward_spikes:rewardSpikes,sensory_spikes:sensory,total_spikes:total,changed_edges:changed,wall_ms:performance.now()-start};
   }
 }

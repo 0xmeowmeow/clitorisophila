@@ -15,7 +15,7 @@ self.onmessage=async({data})=>{
     if(data.type==='load'){
       if(brain)return;
       brain=await loadModel('./model/',(stage,fraction)=>postMessage({type:'progress',stage,fraction}));
-      postMessage({type:'ready',manifest:brain.manifest,positions:brain.source.position,drawPositions:brain.source.draw_positions,groups:{sensory:brain.channels.map(c=>c.indices),reward:brain.reward,outputs:Array.from(brain.source.mb)}});
+      postMessage({type:'ready',manifest:brain.manifest,positions:brain.source.position,drawPositions:brain.source.draw_positions,circuit:{pre:Array.from(brain.source.pre),post:Array.from(brain.source.edges,e=>brain.source.post[Number(e)])},groups:{sensory:brain.channels.map(c=>c.indices),reward:brain.reward,outputs:Array.from(brain.source.mb)}});
       tick();
     }else if(data.type==='input')input=data.channels;
     else if(data.type==='pause')running=!data.paused;

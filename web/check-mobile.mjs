@@ -1,0 +1,3 @@
+import {chromium} from 'playwright';
+const b=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const p=await b.newPage({viewport:{width:390,height:844}});await p.goto('http://127.0.0.1:8771/');await p.waitForTimeout(3500);await p.evaluate(()=>window.scrollTo(0,document.querySelector('.masthead').offsetHeight));await p.waitForTimeout(3000);await p.screenshot({path:'/tmp/cinema-mobile-whole.png'});console.log(await p.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,canvas:document.querySelector('canvas').getBoundingClientRect().toJSON()})));await b.close();
