@@ -10,6 +10,22 @@ export function makeField(){
     const z=rand(),phi=rand()*Math.PI*2,r=Math.sqrt(1-z*z);
     field.push({region,position:[centre[0]+scale[0]*r*Math.cos(phi),centre[1]+scale[1]*r*Math.sin(phi),centre[2]+scale[2]*z],weight:DENSITY_ASSUMPTIONS[region]});
   }
+  // Sparse receptive samples follow the internal branches too, so every
+  // visible part of the authored nerve tree can be touched.
+  for(const side of [-1,1])for(let i=0;i<160;i++){
+    const t=rand(),points=[[0,.42,-.15],[side*.32,.22,-.17],[side*.70,-.32,-.28],[side*1.10,-.95,-.42],[side*1.32,-1.42,-.46]],f=t*4,k=Math.min(3,Math.floor(f)),u=f-k,r=.15*(1-t)+.035,angle=rand()*Math.PI*2;
+    const p=points[k].map((v,j)=>v+(points[k+1][j]-v)*u);
+    p[0]+=Math.cos(angle)*r*.65;p[1]+=Math.sin(angle)*r*.4;p[2]+=Math.abs(Math.sin(angle))*r;
+    field.push({region:'surrounding',position:p,weight:.25});
+  }
+  for(const side of [-1,1])for(let i=0;i<80;i++){
+    const z=rand(),phi=rand()*Math.PI*2,r=Math.sqrt(1-z*z);
+    field.push({region:'surrounding',position:[side*.43+.22*r*Math.cos(phi),-.65+.62*r*Math.sin(phi),.01+.245*z],weight:.25});
+  }
+  for(let i=0;i<70;i++){
+    const t=rand(),a=rand()*Math.PI*2;
+    field.push({region:'surrounding',branch:'body',position:[.12*Math.cos(a),.42+t*.5,-.10+.16*Math.abs(Math.sin(a))],weight:.25});
+  }
   return field;
 }
 export function stimulateField(field,centre,radius,pressure){
@@ -24,6 +40,8 @@ export function stimulateField(field,centre,radius,pressure){
       activated.push([i,pressure*influence]);
     }
   });
-  for(const key of Object.keys(channels))channels[key]=Math.min(1,channels[key]);
+  // Compress the authored field range so sparse branches remain touchable.
+  // This display/input gain is a design choice, not a sensitivity measurement.
+  for(const key of Object.keys(channels))channels[key]=Math.sqrt(Math.min(1,channels[key]));
   return {channels,activated};
 }

@@ -1,23 +1,2 @@
-import {chromium} from 'playwright';
-import fs from 'node:fs/promises';
-const output='assets/demo';await fs.mkdir(output,{recursive:true});
-const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
-const context=await browser.newContext({viewport:{width:1600,height:1100},deviceScaleFactor:1,recordVideo:{dir:'/tmp/clitorisophila-video',size:{width:1600,height:1100}}});
-const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));const began=Date.now();
-await page.goto('http://127.0.0.1:8771/?autoload');await page.waitForFunction(()=>window.clitorisophila?.ready,null,{timeout:120000});
-await page.locator('#contact-size').fill('0.25');await page.locator('#contact-size').dispatchEvent('input');
-await page.evaluate(()=>window.scrollTo(0,document.querySelector('.masthead').offsetHeight));await page.waitForTimeout(2000);
-const clipStart=(Date.now()-began)/1000;
-await page.click('#auto');await page.waitForTimeout(4600);
-const button=page.locator('#stimulate');await button.focus();await page.keyboard.down('Space');
-await page.waitForFunction(()=>window.clitorisophila.lastRow?.reward_spikes>0,null,{timeout:10000});await page.waitForTimeout(450);
-await page.screenshot({path:output+'/live-stimulation.png'});await page.keyboard.up('Space');await page.waitForTimeout(2400);
-await page.locator('#contact-size').fill('0.35');await page.locator('#contact-size').dispatchEvent('input');await page.click('#focus');await page.waitForTimeout(3800);
-await page.screenshot({path:output+'/circuit-detail.png'});await page.waitForTimeout(1200);
-await page.click('#whole');await page.waitForTimeout(3000);
-const clipEnd=(Date.now()-began)/1000;
-await page.evaluate(()=>window.scrollTo(0,0));await page.waitForTimeout(1300);await page.screenshot({path:output+'/artwork-page.png'});
-const state=await page.evaluate(()=>({ready:window.clitorisophila.ready,row:window.clitorisophila.lastRow,neurons:window.clitorisophila.manifest.neurons,connections:window.clitorisophila.manifest.connections}));
-await page.setViewportSize({width:390,height:844});await page.evaluate(()=>window.scrollTo(0,document.querySelector('.masthead').offsetHeight));await page.click('#whole');await page.waitForTimeout(3000);await page.screenshot({path:output+'/mobile.png'});
-const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
-console.log(JSON.stringify({errors,overflow,state}));const video=page.video();await page.close();await context.close();const path=await video.path();await fs.writeFile('/tmp/clitorisophila-video-path',path);await fs.writeFile('/tmp/clitorisophila-video-meta.json',JSON.stringify({path,start:clipStart,duration:clipEnd-clipStart}));console.log('VIDEO',path,clipStart,clipEnd-clipStart);await browser.close();
+// Retained entry point: record the current direct-touch artwork.
+import './render-social.mjs';

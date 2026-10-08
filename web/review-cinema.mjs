@@ -1,20 +1,2 @@
-import {chromium} from 'playwright';
-import fs from 'node:fs/promises';
-const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
-const page=await browser.newPage({viewport:{width:1600,height:1100},deviceScaleFactor:1});
-const errors=[];page.on('pageerror',e=>errors.push(e.message));
-await page.goto('http://127.0.0.1:8771/?autoload');
-await page.waitForFunction(()=>window.clitorisophila?.ready,{timeout:120000});
-await page.evaluate(()=>window.scrollTo(0,0));await page.waitForTimeout(2000);await page.screenshot({path:'/tmp/cinema-opening.png'});
-await page.click('#auto');await page.waitForTimeout(2500);
-await page.screenshot({path:'/tmp/cinema-organism.png'});
-await page.click('#focus');await page.waitForTimeout(2500);await page.screenshot({path:'/tmp/cinema-circuit.png'});
-await page.click('#whole');await page.waitForTimeout(1800);
-await page.locator('.instruments summary').click();await page.screenshot({path:'/tmp/cinema-instruments.png'});
-const before=await page.evaluate(()=>window.clitorisophila.lastRow.tick);await page.click('#pause');await page.waitForTimeout(800);const paused=await page.evaluate(()=>window.clitorisophila.lastRow.tick);await page.waitForTimeout(400);const stable=await page.evaluate(tick=>window.clitorisophila.lastRow.tick===tick,paused);await page.click('#pause');
-await page.locator('.instruments summary').click();
-for(const [i,name]of [[1,'touch'],[2,'wiring'],[3,'reward']]){await page.locator('.chapters article').nth(i).scrollIntoViewIfNeeded();await page.waitForTimeout(2800);await page.screenshot({path:'/tmp/cinema-'+name+'.png'})}
-await page.evaluate(()=>window.scrollTo(0,0));await page.setViewportSize({width:390,height:844});await page.waitForTimeout(3000);await page.screenshot({path:'/tmp/cinema-mobile.png'});
-const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
-console.log(JSON.stringify({errors,pauseStable:stable,overflow,lastRow:await page.evaluate(()=>window.clitorisophila.lastRow)}));
-await browser.close();
+// Retained entry point: verify the current interactive artwork.
+import './check-interaction.mjs';

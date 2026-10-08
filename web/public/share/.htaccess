@@ -1,0 +1,5 @@
+<IfModule mod_headers.c>
+  <FilesMatch "\.(gif|mp4)$">
+    Header set Content-Disposition "attachment"
+  </FilesMatch>
+</IfModule>
