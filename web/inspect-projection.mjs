@@ -1,0 +1,10 @@
+import {chromium} from 'playwright';
+const b=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox']});
+const p=await b.newPage({viewport:{width:1600,height:1050},deviceScaleFactor:1});
+await p.goto('https://meow-meow.io/anthonys-fire/projection/',{waitUntil:'networkidle'});
+await p.waitForTimeout(2500);
+await p.screenshot({path:'/tmp/clitorisophila-projection-reference.png'});
+await p.evaluate(()=>window.scrollTo(0,650));
+await p.waitForTimeout(1200);
+await p.screenshot({path:'/tmp/clitorisophila-projection-stage.png'});
+await b.close();

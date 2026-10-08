@@ -16,3 +16,4 @@ jobs:
       - run: python -m pytest -q
         env:
           OPENBLAS_NUM_THREADS: '1'
+      - run: node web/test-surface.mjs

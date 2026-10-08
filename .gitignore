@@ -18,6 +18,13 @@ __pycache__/
 dist/
 build/
 .DS_Store
+web/node_modules/
+web/dist/
+web/public/model/
+web/engine.mjs
+web/engine.wasm
+design/*.choice.json
+design/*.choice.*.json
 coinbase-key.json
 cdp_api_key.json
 *.partial

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Clitorisophila — a touch, wired to a fly</title>
+  <meta name="description" content="An artwork about language models, large scientific datasets and the ease of building a connection with no use. A schematic clitoral input stimulates a live fly-connectome simulation.">
+  <link rel="stylesheet" href="app.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23071019'/%3E%3Cpath d='M5 17h6l3-9 4 16 3-7h6' fill='none' stroke='%2368e8dd' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="masthead">
+  <div><p class="eyebrow">Clitorisophila <span> / an unnecessary connection</span></p><h1>A touch,<br>wired to a fly.</h1></div>
+  <div class="intro"><p>An anatomical preprint, a viral connectome, a language model.<br>A bridge built because building it has become easy.</p><a href="https://github.com/0xmeowmeow/clitorisophila">The code behind the work ↗</a></div>
+</header>
+<main>
+  <section class="experiment" aria-label="Live anatomical stimulation and neural response">
+    <div class="stage-head">
+      <div><span class="index">01</span><span>Virtual clitoral input</span><small>Schematic geometry · drag to rotate</small></div>
+      <div><span class="index">02</span><span>Fly nervous system</span><small>166,700 neurons · 25,582,938 connections</small></div>
+    </div>
+    <div class="stage">
+      <div id="specimen" class="view" role="img" aria-label="A schematic clitoris and animated finger"></div>
+      <div class="bridge" aria-hidden="true"><span>sensory input</span><div></div><span>+ reward</span></div>
+      <div id="network" class="view" role="img" aria-label="Live simulated activity at fly neuron positions"></div>
+      <div class="anatomy-note">Clitoral body, glans and internal structures.<br>Original schematic; not the 2026 scan.</div>
+      <div class="network-tools"><button id="focus" type="button">Focus stimulated circuit</button><span class="legend"><i class="cyan"></i>sensory <i class="gold"></i>PAM11 reward</span></div>
+      <div class="loading" id="loading">
+        <p class="eyebrow">Full MaleCNS · in your browser</p><h2>Load the nervous system.</h2>
+        <p>The live model downloads about 76 MB and uses several hundred MB of memory. Desktop browsers are recommended.</p>
+        <button id="load" class="primary">Load live simulation <span>↗</span></button>
+        <div id="progress" role="status" aria-live="polite"></div>
+        <div class="progress-track"><div id="progress-bar"></div></div>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="stimulate" class="touch-button" disabled>Hold to stimulate <span>Space</span></button>
+      <button id="auto" disabled>Run finger demo</button>
+      <button id="place">Move contact</button>
+      <label>Region <select id="region"><option value="glans">Glans</option><option value="hood">Hood</option><option value="surrounding">Surrounding tissue</option></select></label>
+      <label class="intensity">Intensity <input id="intensity" type="range" min="0" max="1" step=".01" value=".85"><output id="intensity-label">85%</output></label>
+      <label class="patch-size">Contact size <input id="contact-size" type="range" min=".04" max=".45" step=".01" value=".15"><output id="size-label">Medium</output></label>
+      <span id="contact-state" class="state">INPUT RELEASED</span>
+    </div>
+    <div class="monitor">
+      <div class="scope"><div><span>Sensory spikes</span><b id="sensory-value">—</b><small>per 20 ms</small></div><canvas id="sensory-trace" aria-label="Sensory spikes over simulation time"></canvas></div>
+      <div class="scope reward"><div><span>Reward-cell spikes</span><b id="reward-value">—</b><small>per 20 ms</small></div><canvas id="reward-trace" aria-label="PAM11 reward spikes over simulation time"></canvas></div>
+      <div class="metrics"><div><span>Simulated time</span><b id="sim-time">0.00 s</b></div><div><span>Changed candidate synapses</span><b id="changed">0 / 7,835</b></div><small id="speed">Model not loaded</small></div>
+    </div>
+    <div class="bench-controls">
+      <label><input id="reward-enabled" type="checkbox" checked> Reward delivery</label>
+      <label><input id="learning" type="checkbox" checked> Candidate learning</label>
+      <button id="pause" disabled>Pause simulation</button><button id="reset" disabled>Reset state</button>
+      <label><input id="density" type="checkbox" checked> Schematic nerve field</label>
+      <small>Assumed local density · computed spikes · fading glow</small>
+    </div>
+  </section>
+  <section class="chapters">
+    <article><p class="eyebrow">I · the borrowed organ</p><h2>A human question becomes an input.</h2><p>In 2026, a new clitoral nerve map entered the news. Around the same time, reconstructed fly nervous systems were being made to play games and trade cryptocurrency. Two bodies of data met in a conversation with a language model. Soon there was a repository.</p><p>The organ here is drawn, not scanned. The finger is an animated mesh. “Touch” is a number, assigned to a region. The new human imaging motivates the encounter; none of its measured nerve routes are in this model.</p></article>
+    <article><p class="eyebrow">II · the available nervous system</p><h2>A fly becomes something to plug into.</h2><p>The fly’s wiring is real data: 166,700 retained neurons and 25,582,938 directed connections from MaleCNS. Every one remains in the simulation. The light appears at neuron cell-body positions, estimated where the dataset supplies none.</p><p>A language model can help wrap that enormous scientific object in a few controls. A dataset that once required years of collective work becomes a component in somebody else’s afternoon.</p></article>
+    <article><p class="eyebrow">III · the invented bridge</p><h2>The signal gets called reward.</h2><p>We choose fly Kenyon cells as input sockets. We choose a delay. We inject current into 15 PAM11 dopamine cells. The native simulator propagates spikes and a candidate learning rule changes some existing synapses. The pulses and weight changes are computed live.</p><p>The contact patch gathers signal from a schematic nerve field. A wider patch reaches more of it; pressure scales the result. Its regional densities are assumptions, exposed in the code, rather than measurements from the new scan. There is no discovered human-to-fly pathway and no measurement of pleasure. There are two things that can exchange numbers, and code that makes them do it.</p></article>
+    <article><p class="eyebrow">IV · the convincing surface</p><h2>The machinery lends the pairing authority.</h2><p>A finger approaches. An organ responds. Neurons illuminate. A graph and its counters make the sequence look consequential. The programme runs, the interface is coherent, and the connection acquires the appearance of a reason.</p><p>This is the absurdity the work holds open: language models and large datasets make elaborate products possible before anyone has established why those products should exist. The power to assemble them is disproportionate to the meaning of the assembly.</p></article>
+    <article><p class="eyebrow">V · nowhere to arrive</p><h2>It can keep working indefinitely.</h2><p>Clitorisophila has no proposed clinical use, no trading strategy, no real-world problem it solves. It is an artwork made in response to the incomprehensible ease of vibe coding: an unnecessary hybrid that performs its connection with complete seriousness.</p><p>The source is open. The simulation can be forked and attached to something else. More connections are possible. A purpose is still absent.</p></article>
+  </section>
+  <section class="sources"><p class="eyebrow">Materials & seams</p><p>Original schematic anatomy, finger and nerve-density field · engineered stimulation mapping · unchanged Stonkfly / DOOMFLY native spiking kernel compiled to WebAssembly · port of its candidate learning rule · computed spikes with a short visual afterglow.</p><p><a href="https://www.biorxiv.org/content/10.64898/2026.03.18.712572v1">Clitoral anatomy preprint, 2026 ↗</a> · <a href="https://male-cns.janelia.org/">MaleCNS data ↗</a> · <a href="https://github.com/0xmeowmeow/clitorisophila">Source, parameters & validation ↗</a></p></section>
+</main>
+<footer><span>Meow-Ludo · Clitorisophila</span><span>MIT software · MaleCNS data CC BY 4.0, HHMI Janelia / Google Research / collaborators</span><a href="https://meow-meow.io/">meow-meow.io ↗</a></footer>
+<script type="module" src="app.js"></script>
+</body></html>

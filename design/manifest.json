@@ -1,0 +1,18 @@
+{
+  "project": "Clitorisophila live demo",
+  "brief": "Show schematic finger contact, live simulated neuron activity and reinforcement together, with honest model labels.",
+  "candidates": [
+    {
+      "id": "instruments",
+      "name": "Coupled instruments",
+      "rationale": "Two adjacent specimen views with separate spike traces make input and response easy to compare.",
+      "file": "instruments.html"
+    },
+    {
+      "id": "field",
+      "name": "A single field",
+      "rationale": "One continuous scene puts the anatomical input and neural response on the same spatial stage.",
+      "file": "field.html"
+    }
+  ]
+}

@@ -1,5 +1,13 @@
 # Clitorisophila
 
+An artwork about language models, large datasets, and the ease of building convincing connections with no real-world use. A schematic clitoral input is attached to a fly's reconstructed nervous system because the tools make it possible.
+
+**[Run the live artwork on meow-meow.io](https://meow-meow.io/clitorisophila/)** — animated finger contact, movable stimulation patches, adjustable size/pressure, and computed activity in the full connectome. The page explains the work in five chapters, following the visual-quality reference of The Projection.
+
+![Live finger stimulation and computed fly neuron activity](assets/demo/live-stimulation.png)
+
+[Animated demo](assets/demo/live-loop.gif) · [Video](assets/demo/live-loop.mp4) · [Circuit detail](assets/demo/circuit-detail.png) · [Full artwork page](assets/demo/artwork-page.png) · [Browser build and assumptions](docs/browser-artwork.md)
+
 **A live synthetic clitoral stimulation → fly-connectome reinforcement interface.** Import it into a game, installation, virtual body or sensor loop. Neural activity and candidate synaptic memory persist between ticks and across checkpoints.
 
 A fork of [Stonkfly](https://github.com/nftechie/stonkfly), the Bitcoin demo, built on [DOOMFLY](https://github.com/nftechie/doomfly). Full mode retains its MaleCNS v1.0 graph: **166,700 neurons and 25,582,938 directed connections**. MIT-licensed code; connectome data is downloaded separately.

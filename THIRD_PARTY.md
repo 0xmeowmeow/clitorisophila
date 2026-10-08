@@ -1,5 +1,7 @@
 # Sources and attribution
 
+- The browser artwork uses Three.js 0.180.0 (MIT), installed via `web/package-lock.json`. The anatomical mesh, finger, contact field and interface are original code. Emscripten compiles the existing MIT kernel; generated MaleCNS graph exports retain CC BY 4.0 data attribution and are hosted separately from git. See `docs/browser-artwork.md` for assumptions and build instructions.
+
 - **Clitorisophila v0.1** is a fork of [Stonkfly](https://github.com/nftechie/stonkfly), based on commit `78ef3e05ab0fa086032098558d893667068944a0`. Its new input adapter, CLI and integration examples use the upstream native kernel and candidate memory rule unchanged. The original README is retained at `docs/upstream-stonkfly.md`; trading integration is an optional extra and is not part of the stimulation loop.
 - [Neuroanatomy of the clitoris](https://doi.org/10.64898/2026.03.18.712572), Lee et al., 2026 preprint: scientific motivation only. No figures, scans, segmentations or paper text are redistributed. The preprint's CC-BY-NC terms are separate from the MIT software license. Virtual region labels and transduction parameters in this project are engineered inputs, not the paper's data.
 

@@ -1,0 +1,11 @@
+import {chromium} from 'playwright';
+const b=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const page=await b.newPage({viewport:{width:1600,height:1100},deviceScaleFactor:1});
+const errors=[];page.on('pageerror',e=>{errors.push(e.message);console.log('PAGE ERROR',e.message)});page.on('console',m=>{if(m.type()==='error')console.log('CONSOLE',m.text())});
+await page.goto('http://127.0.0.1:8771/?autoload');
+await page.waitForFunction(()=>window.clitorisophila?.ready,{timeout:120000});
+await page.click('#auto');
+await page.waitForTimeout(1800);
+await page.screenshot({path:'/tmp/clitorisophila-live-first.png'});
+console.log(JSON.stringify({errors,state:await page.evaluate(()=>window.clitorisophila.lastRow)}));
+await b.close();
