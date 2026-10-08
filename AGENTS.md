@@ -1,8 +1,8 @@
-# Stonkfly
+# Clitorisophila
 
-- Preserve the full retained MaleCNS v1.0 graph. No pruning, scripted trades presented as neural output, LLM trading policy, or hidden profit-based action selection.
-- Separate market observations, sensory proxies, neural propagation, plasticity, fixed decoding, and execution limits. The risk guard may reject an order; it must never choose a replacement trade.
-- Profit/loss reinforcement is an engineered input to identified dopamine cells. Do not claim modeled pain, pleasure, consciousness, or validated profitable learning.
-- Paper execution is the default. Never place real trades while testing. Credentials, account identifiers, balances, logs, checkpoints and data stay ignored.
-- Use Decimal quantities and persist order intent before sending it. Unknown exchange outcomes stop execution until reconciliation; never blindly retry a trade.
-- Keep README short. Detailed model and execution caveats belong in docs.
+- Preserve the full retained MaleCNS v1.0 graph and the upstream simulator's provenance. Never pass the synthetic six-cell fixture off as a fly connectome.
+- Keep transduction, sensory mapping, dopamine injection, neural dynamics, plasticity and host action decoding explicit. No hidden preference score or hard-coded reward-seeking presented as learned behaviour.
+- Stimulation-to-reward and human-region-to-fly-neuron mappings are synthetic. Do not claim pleasure, consciousness, a human clitoral connectome, anatomical homology or demonstrated behavioural learning.
+- The default install and clitorisophila entry point do not import exchange/broker modules. Original trading modules remain upstream history and require the separate trading extra. Never execute trades while testing.
+- Keep live input buffering bounded. Stale input releases stimulation. Report simulated time and wall speed separately; preserve neural and adapter state in checkpoints.
+- Keep datasets, runs, credentials and checkpoints out of git. Preserve upstream MIT attribution and data-license separation.

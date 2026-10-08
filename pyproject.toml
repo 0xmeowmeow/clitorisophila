@@ -3,27 +3,32 @@ requires = ["setuptools>=80"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "stonkfly"
+name = "clitorisophila"
 version = "0.1.0"
-description = "An experimental fly-connectome controller with guarded Coinbase AgentKit trading actions"
+description = "Live synthetic clitoral stimulation and reinforcement for reusable fly-connectome simulations"
+readme = "README.md"
+license = "MIT"
 requires-python = ">=3.11"
-dependencies = [
-  "coinbase-agentkit==0.7.4", "coinbase-advanced-py==1.8.4",
-  "numpy==2.4.6", "pandas==3.0.5", "pyarrow==25.0.1", "Pillow==12.3.0",
-  "pydantic==2.13.5", "python-dotenv==1.2.3"
-]
+dependencies = ["numpy>=2,<3"]
+
+[project.urls]
+Repository = "https://github.com/0xmeowmeow/clitorisophila"
+Upstream = "https://github.com/nftechie/stonkfly"
 
 [project.optional-dependencies]
-test = ["pytest==9.1.1"]
+connectome = ["pandas>=2,<4", "pyarrow>=18,<26"]
+test = ["pytest>=8,<10"]
+trading = ["coinbase-agentkit==0.7.4", "coinbase-advanced-py==1.8.4", "pandas>=2,<4", "pyarrow>=18,<26", "Pillow>=11,<13", "pydantic>=2,<3", "python-dotenv>=1,<2"]
 
 [project.scripts]
 stonkfly = "stonkfly.cli:main"
+clitorisophila = "clitorisophila.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["stonkfly*"]
+include = ["clitorisophila*", "stonkfly*"]
 
 [tool.setuptools.package-data]
 "stonkfly.neural" = ["*.cpp", "*.json"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests_clitorisophila"]

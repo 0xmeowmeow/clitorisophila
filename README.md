@@ -1,39 +1,71 @@
-![Stonkfly: a pixel fly beside a candlestick chart](assets/stonkfly.png)
+# Clitorisophila
 
-# Stonkfly
+**A live synthetic clitoral stimulation → fly-connectome reinforcement interface.** Import it into a game, installation, virtual body or sensor loop. Neural activity and candidate synaptic memory persist between ticks and across checkpoints.
 
-A fly-connectome simulation that can operate a crypto trading account. Actual neural output, actual Coinbase integration. Profitable learning has not been demonstrated.
+A fork of [Stonkfly](https://github.com/nftechie/stonkfly), the Bitcoin demo, built on [DOOMFLY](https://github.com/nftechie/doomfly). Full mode retains its MaleCNS v1.0 graph: **166,700 neurons and 25,582,938 directed connections**. MIT-licensed code; connectome data is downloaded separately.
 
-**How it works:** Public Coinbase prices become an RGB chart. It stimulates 3,335 brightness inputs and 811 R8 color inputs in the retained **MaleCNS v1.0 graph: 166,700 neurons, 25.6 million connections**. A fixed neural readout proposes buy, sell or hold. A custom **Coinbase AgentKit ActionProvider** checks limits and places spot orders through Coinbase Advanced.
+```text
+UI / sensor / host action
+         ↓
+virtual clitoral region + intensity
+         ↓
+sensory current + delayed PAM11 reward current
+         ↓
+persistent fly dynamics + candidate KC→MBON learning
+         ↓
+spikes / readouts → your host's next action → repeat
+```
 
-Positive portfolio P&L stimulates 15 identified PAM11 dopamine cells; negative P&L stimulates two PPL101 aversive dopamine cells. A candidate memory rule changes existing KC-to-MBON connections. These are engineered reinforcement signals, **not modeled pain receptors**. Synaptic changes do not establish that it learns to trade profitably. [Model and evidence](docs/model.md).
+## Try the interface without a dataset
 
-## Run it
-
-Python 3.11, a C++17 compiler, macOS/Linux. Allow several GB for the dataset and dependencies; 16 GB RAM recommended.
+Python ≥3.11, C++17 compiler, Linux/macOS:
 
 ```sh
-python3.11 -m venv .venv
+git clone https://github.com/0xmeowmeow/clitorisophila.git
+cd clitorisophila
+python3 -m venv .venv
 source .venv/bin/activate
-pip install -e '.[test]'
-python -m stonkfly prepare
-python -m stonkfly run
+pip install -e .
+clitorisophila demo
 ```
 
-Default: **paper trades, real public BTC-USDC data, $100 simulated balance**. No key needed. Local logs, sensory images and resumable brain state go in `runs/paper/`. Ctrl-C stops it; the same command resumes.
+Ctrl-C stops it. This offline demo uses a **synthetic six-cell test circuit**, running the same native kernel and memory rule. It is not a reduced biological connectome. For a host-owned feedback example: `python examples/closed_loop.py`.
 
-For real orders, first create a dedicated Coinbase Advanced portfolio with **at most 100 USDC** and a portfolio-scoped **ECDSA API key with View + Trade, no Transfer**. Copy `.env.example` to `.env`, fill it in locally, then run these commands yourself:
+## Run the full fly live
+
+Allow several GB of disk space and memory; 16 GB RAM is recommended for the full dataset preparation and simulator.
 
 ```sh
-python -m stonkfly run --live --preflight-only
-python -m stonkfly run --live
+pip install -e '.[connectome]'
+clitorisophila prepare      # ~1.1 GB source downloads; checksums verified
+clitorisophila mapping --out mapping.json
+python examples/stream_input.py | clitorisophila live --mapping mapping.json
 ```
 
-Defaults: $10 maximum order including reserved fees, 24 attempts/day, no shorts or leverage. A $20 drawdown stops new orders; **it does not liquidate holdings or cap further losses**. [Operation and recovery](docs/operations.md).
+Live input is newline-delimited JSON. Refresh while stimulation is held; omitted regions are released:
 
-```sh
-python -m stonkfly status
-python -m pytest -q
+```json
+{"schema":"clitorisophila.input.v1","channels":{"glans":0.8,"hood":0.2}}
 ```
 
-The repo does not come funded or connected to anyone’s account. Live execution needs your local credentials and explicit opt-in.
+The brain continues ticking during silence. Stale input releases touch after 250 ms; delayed rewards already scheduled finish delivering. Output is one JSON record per tick. Start with `--backend fixture` for integration development. Use `--no-reward` and `--frozen` for controls.
+
+## Embed it
+
+```python
+from clitorisophila import Frame, Loop
+from clitorisophila.native import full_backend, synthetic_gateway
+
+backend = full_backend()  # after prepare; construct once
+loop = Loop(backend, synthetic_gateway(backend))
+
+# Call repeatedly from your application's simulation loop.
+result = loop.step(Frame({"glans": 0.8}))
+rates = result["readout_hz"]
+loop.step()               # release stimulation; brain/memory keep running
+loop.checkpoint("runs/session-001")
+```
+
+You own action decoding and feed the next stimulation back in. The package does not prescribe an agent's decisions. [Integration, mappings and checkpoints](docs/integration.md).
+
+**What is modeled:** configurable synthetic touch encoding, reward-associated neuron stimulation, spike propagation and candidate plasticity. **What is not established:** felt pleasure, human–fly anatomical homology, or learned reward-seeking. The [2026 clitoral anatomy preprint](https://www.biorxiv.org/content/10.64898/2026.03.18.712572v1) motivates the interface; its scans and segmented nerve routes are not included. The named regions are virtual ports, not reconstructed human anatomy. [Model assumptions](docs/clitorisophila-model.md) · [Validation](docs/clitorisophila-validation.md) · [Upstream attribution](THIRD_PARTY.md).
