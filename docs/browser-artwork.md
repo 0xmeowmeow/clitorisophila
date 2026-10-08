@@ -2,6 +2,10 @@
 
 The public page is an artwork about language models, large scientific datasets and the ease of constructing convincing connections before establishing any reason for them. The user's requested reference is [The Projection](https://meow-meow.io/anthonys-fire/projection/) for visual quality and explanatory style. The visual audition is retained under `design/`; the subsequent user direction is recorded in `design/DIRECTION.md`.
 
+## Accepted version
+
+The user accepted the live artwork on 9 October 2026. The interactive implementation is commit `9cb2b0f`, with [passing repository checks](https://github.com/0xmeowmeow/clitorisophila/actions/runs/37782887596). Public-browser verification covered automatic loading, real pointer input, computed reward response, pause/reset and mobile layout. GIF and MP4 downloads are available under `share/`. The homepage work tile and updates entry link directly into the artwork. Rebuild, export and deployment instructions are below; no implementation work remains in the accepted scope.
+
 ## Live implementation
 
 `web/` is a static site. The unchanged C++ native kernel is compiled with Emscripten 6.0.11. A module worker runs every retained MaleCNS neuron and connection, with an explicit JavaScript port of the upstream candidate memory rule and stimulation adapter. The page's meshes, camera and point lighting never produce neural spikes. Computed spike counts drive a short fading afterglow. One scene contains the original implicit anatomical sculpture, the full soma cloud and 111 synthetic binding paths. Ninety-six paths terminate at the chosen sensory Kenyon cells, and fifteen at the reward PAM11 cells. Particle brightness represents current delivered through those bindings; their travel speed is a visual convention, not a conduction model. Reward-path brightness follows the actual delayed delivery, not an animation timer. The 7,835 existing candidate plastic edges are also drawn and light from their endpoints’ computed spikes. Sixteen thousand strong baseline connections are drawn for legibility; this display sample does not filter simulation edges.

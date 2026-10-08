@@ -5,6 +5,7 @@ Square, approximately ten-second recordings of the running Clitorisophila artwor
 - `clitorisophila-facebook.gif`: looping 960 × 960 GIF.
 - `clitorisophila-facebook.mp4`: matching H.264 MP4.
 - `clitorisophila-facebook-preview.png`: still from live operation.
+- `clitorisophila-thumbnail.png`: landscape capture for the meow-meow.io homepage tile.
 
 Three direct contacts use different patch sizes. Neural light and hearts come from the live model; a short dissolve joins two recorded sections at the loop boundary. There is no finger or metric overlay.
 
